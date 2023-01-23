@@ -76,9 +76,38 @@
                 @forelse ($projects as $project)
 
                     <tr>
+
                         <td>{{$project->id}}</td>
-                        <td>{{$project->name}}</td>
+
+                        @php
+
+                            $badges_classes = [
+                                '1' => 'text-bg-primary',
+                                '2' => 'text-bg-secondary',
+                                '3' => 'text-bg-success',
+                                '4' => 'text-bg-danger',
+                                '5' => 'text-bg-warning',
+                                '6' => 'text-bg-info'
+                            ];
+
+                            // dd($project->type?->id);
+
+
+                            if(is_null($project->type?->id)){
+                                $badge_class = "";
+                            } else {
+                                $badge_class = $badges_classes[$project->type->id];
+                            }
+
+                        @endphp
+
+                        <td>
+                            {{$project->name}}
+                            <span class="badge {{$badge_class}}">{{$project->type?->name}}</span>
+                        </td>
+
                         <td>{{date_format(date_create($project->update_at), 'd/m/Y')}}</td>
+
                         <td class="px-0">
                             <a class="btn btn-outline-primary btn-sm" href="{{route('admin.projects.show' , $project)}}" title="show"><i class="fa-solid fa-eye"></i></a>
 
@@ -87,6 +116,7 @@
                             @include('admin.partials.form-delete')
 
                         </td>
+
                     </tr>
 
                 @empty

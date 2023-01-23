@@ -12,6 +12,11 @@ class Project extends Model
 
     protected $fillable = ['name','slug','client_name','summary','cover_image', 'cover_image_original_name'];
 
+    // type al singolare perche essendo una relazione uno a molti ogni project può avere un solo type
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
+
     // funzione per generare lo slug e se esiste gia modificarlo tramite contatore
     public static function generateSlug($string){
         $slug = Str::slug($string, '-');
