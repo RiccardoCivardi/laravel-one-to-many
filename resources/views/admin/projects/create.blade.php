@@ -44,6 +44,18 @@
             </div>
 
             <div class="mb-3">
+                <label for="type" class="form-label">Tipo</label>
+                <select class="form-select" name="type_id" aria-label="Default select example">
+                    <option value="">Selezionare un tipo</option>
+                    @foreach ($types as $type)
+                        <option
+                        @if($type->id == old('type_id')) selected @endif
+                        value="{{$type->id}}">{{$type->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
                 <label for="summary" class="form-label">Descrizione del progetto</label>
                 <textarea name="summary" class="form-control @error('summary') is-invalid @enderror" id="summary" placeholder="Inserisci la descrizione del progetto" row="3">{{old('summary')}}</textarea>
                 @error('summary')

@@ -16,6 +16,20 @@
         </li>
 
         <li class="nav-item">
+            <a  class="nav-link" href="{{route('admin.types_project')}}">
+                <i class="fa-brands fa-font-awesome fs-5 me-1"></i>
+                <span class="d-none d-xl-inline">Tipo/Progetti</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a  class="nav-link" href="{{route('admin.types.index')}}">
+                <i class="fa-solid fa-folder-open fs-5 me-1"></i>
+                <span class="d-none d-xl-inline">Tipologie</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a  class="nav-link" href="{{route('admin.projects.create')}}">
                 <i class="fa-solid fa-calendar-plus fs-5 me-1"></i>
                 <span class="d-none d-xl-inline">Nuovo Progetto</span>

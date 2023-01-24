@@ -113,7 +113,11 @@
 
                             <a class="btn btn-outline-warning btn-sm" href="{{route('admin.projects.edit', $project)}}" title="edit"><i class="fa-solid fa-pen"></i></a>
 
-                            @include('admin.partials.form-delete')
+                            @include('admin.partials.form-delete' ,[
+                                'route' => 'projects',
+                                'message' => "Confermi l'eliminazione del progetto: $project->name",
+                                'entity' => $project
+                            ])
 
                         </td>
 

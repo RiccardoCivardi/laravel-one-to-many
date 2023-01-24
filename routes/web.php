@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -27,11 +28,15 @@ Route::middleware(['auth', 'verified'])
     ->group(function(){
         // nella funzione di callback creo la mie rotta
         Route::get('/', [DashboardController::class, 'index'])->name('home');
+        // Rotta per la vista che mi mostra tutti i projects per ogni type
+        Route::get('projects/project-type', [ProjectController::class, 'types_project'])->name('types_project');
         // qui mettiamo tutte le rotte della CRUD con la resources
         // ...
         Route::resource('projects', ProjectController::class);
         // Rotta che riordina la tabella in base alla selezione
         Route::get('projects/orderby/{column}/{direction}', [ProjectController::class, 'orderby'])->name('projects.orderby');
+        //rotta crud dei types
+        Route::resource('types', TypeController::class)->except(['show','create','edit']);
     });
 
 

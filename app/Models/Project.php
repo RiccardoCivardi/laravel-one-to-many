@@ -10,7 +10,15 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','slug','client_name','summary','cover_image', 'cover_image_original_name'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'client_name',
+        'summary',
+        'cover_image',
+        'cover_image_original_name',
+        'type_id'
+     ];
 
     // type al singolare perche essendo una relazione uno a molti ogni project può avere un solo type
     public function type(){

@@ -13,7 +13,12 @@
         <div class="mb-3 d-flex align-items-center">
 
             <h1 class="d-inline me-3">MODIFICA PROGETTO</h1>
-            @include('admin.partials.form-delete')
+
+            @include('admin.partials.form-delete' ,[
+                'route' => 'projects',
+                'message' => "Confermi l'eliminazione del progetto: $project->name",
+                'entity' => $project
+            ])
 
         </div>
 
@@ -47,6 +52,18 @@
                 @error('client_name')
                     <p class="invalid-feedback">{{$message}}</p>
                 @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Tipo</label>
+                <select class="form-select" name="type_id" aria-label="Default select example">
+                    <option value="">Selezionare un tipo</option>
+                    @foreach ($types as $type)
+                        <option
+                        @if($type->id == old('type_id', $project->type?->id)) selected @endif
+                        value="{{$type->id}}">{{$type->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mb-3">
